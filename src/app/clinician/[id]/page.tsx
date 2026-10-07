@@ -179,7 +179,7 @@ export default function ClinicianCasePage() {
 
                 {caseRecord.status === "RELEASED" && (
                   <p className="text-sm text-success">
-                    Released to patient — this case is now immutable.
+                    Released to patient. This case is now immutable.
                   </p>
                 )}
               </div>

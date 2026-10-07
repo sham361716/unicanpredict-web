@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { AppHeader } from "@/components/app-header";
 import {
-  clearSession,
   getSession,
   listAudit,
   listCases,
@@ -14,17 +14,23 @@ import {
   type CaseRecord,
 } from "@/lib/api";
 
-const STATUS_STYLES: Record<string, string> = {
-  DRAFT: "bg-line/60 text-slate",
-  AWAITING_REVIEW: "bg-warning/10 text-warning",
-  REJECTED_QC: "bg-danger/10 text-danger",
-  UNDER_REVIEW: "bg-ai/10 text-ai",
-  VERIFIED: "bg-accent-soft text-brand",
-  DIAGNOSED: "bg-brand/10 text-brand",
-  RELEASED: "bg-success/10 text-success",
+// One token per status, reused for the distribution bar, the legend, and
+// the cases table, so the same color always means the same status.
+const STATUS_COLOR: Record<string, string> = {
+  DRAFT: "bg-line text-slate",
+  AWAITING_REVIEW: "bg-warning text-warning",
+  REJECTED_QC: "bg-danger text-danger",
+  UNDER_REVIEW: "bg-ai text-ai",
+  VERIFIED: "bg-brand text-brand",
+  DIAGNOSED: "bg-brand text-brand",
+  RELEASED: "bg-success text-success",
 };
 
-const ALL_STATUSES = Object.keys(STATUS_STYLES);
+const ALL_STATUSES = Object.keys(STATUS_COLOR);
+
+function label(status: string): string {
+  return status.replaceAll("_", " ").toLowerCase();
+}
 
 export default function AdminPage() {
   const router = useRouter();
@@ -53,92 +59,104 @@ export default function AdminPage() {
   const counts = Object.fromEntries(
     ALL_STATUSES.map((s) => [s, cases.filter((c) => c.status === s).length]),
   );
+  const activeStatuses = ALL_STATUSES.filter((s) => counts[s] > 0);
 
   return (
-    <main className="flex flex-1 flex-col bg-app px-4 py-10 text-navy">
-      <div className="mx-auto w-full max-w-5xl">
-        <div className="flex items-center justify-between">
+    <div className="flex min-h-full flex-1 flex-col bg-app text-navy">
+      <AppHeader roleLabel="Admin" userName={user.name} />
+
+      <main className="mx-auto w-full max-w-6xl px-4 py-10">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold">Admin — Dashboard</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
             <p className="mt-1 text-sm text-slate">
-              Signed in as {user.name}
+              {loading ? "Loading" : `${cases.length} cases across the pipeline`}
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/admin/disagreements"
-              className="rounded-md border border-line px-3 py-1.5 text-sm font-medium text-brand hover:bg-accent-soft/50"
-            >
-              Disagreement cases
-            </Link>
-            <button
-              onClick={() => {
-                clearSession();
-                router.push("/login");
-              }}
-              className="rounded-md border border-line px-3 py-1.5 text-sm text-slate hover:bg-line/60"
-            >
-              Sign out
-            </button>
-          </div>
+          <Link
+            href="/admin/disagreements"
+            className="h-10 rounded-md border border-line px-4 text-sm font-medium leading-10 text-brand hover:bg-accent-soft/50"
+          >
+            Disagreement cases
+          </Link>
         </div>
 
-        {loading && <p className="mt-8 text-sm text-slate">Loading...</p>}
+        {loading && <p className="mt-10 text-sm text-slate">Loading…</p>}
 
         {!loading && (
           <>
-            {/* ── Status counts ─────────────────────────────── */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-              {ALL_STATUSES.map((s) => (
-                <div
-                  key={s}
-                  className="rounded-md border border-line bg-white p-4 shadow-sm"
-                >
-                  <p
-                    className={cn(
-                      "inline-block rounded-full px-2 py-0.5 text-xs font-medium",
-                      STATUS_STYLES[s],
-                    )}
-                  >
-                    {s.replace("_", " ")}
-                  </p>
-                  <p className="mt-2 text-2xl font-bold">{counts[s]}</p>
-                </div>
-              ))}
+            {/* ── Pipeline distribution ──────────────────────── */}
+            <div className="mt-8">
+              {cases.length > 0 ? (
+                <>
+                  <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-line">
+                    {activeStatuses.map((s) => (
+                      <div
+                        key={s}
+                        className={cn(STATUS_COLOR[s].split(" ")[0], "h-full")}
+                        style={{ width: `${(counts[s] / cases.length) * 100}%` }}
+                        title={`${label(s)}: ${counts[s]}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    {ALL_STATUSES.map((s) => (
+                      <div key={s} className="flex items-center gap-2 text-sm">
+                        <span
+                          className={cn("h-2 w-2 rounded-full", STATUS_COLOR[s].split(" ")[0])}
+                        />
+                        <span className="capitalize text-slate">{label(s)}</span>
+                        <span className="font-mono tabular-nums text-navy">{counts[s]}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className="rounded-md border border-dashed border-line bg-card p-6 text-center text-sm text-slate">
+                  No cases in the system yet.
+                </p>
+              )}
             </div>
 
             {/* ── All cases ─────────────────────────────────── */}
-            <div className="mt-10">
-              <h2 className="text-sm font-semibold text-navy">
-                All cases ({cases.length})
-              </h2>
-              <div className="mt-4 overflow-x-auto rounded-md border border-line bg-white shadow-sm">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-app text-slate">
-                    <tr>
-                      <th className="px-4 py-2 font-medium">Patient</th>
-                      <th className="px-4 py-2 font-medium">Organ</th>
-                      <th className="px-4 py-2 font-medium">Status</th>
-                      <th className="px-4 py-2 font-medium">Created</th>
+            <div className="mt-12">
+              <h2 className="text-sm font-medium text-slate">All cases</h2>
+              <div className="mt-3 overflow-x-auto rounded-md border border-line bg-card">
+                <table className="w-full min-w-140 border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-line text-left text-slate">
+                      <th className="px-4 py-3 font-medium">Patient ref</th>
+                      <th className="px-4 py-3 font-medium">Organ</th>
+                      <th className="px-4 py-3 font-medium">Created</th>
+                      <th className="px-4 py-3 text-right font-medium">Status</th>
                     </tr>
                   </thead>
                   <tbody>
+                    {cases.length === 0 && (
+                      <tr>
+                        <td colSpan={4} className="px-4 py-10 text-center text-slate">
+                          No cases yet.
+                        </td>
+                      </tr>
+                    )}
                     {cases.map((c) => (
-                      <tr key={c.id} className="border-t border-line">
-                        <td className="px-4 py-2">{c.patient?.pseudonymRef}</td>
-                        <td className="px-4 py-2 capitalize">{c.organ}</td>
-                        <td className="px-4 py-2">
+                      <tr key={c.id} className="border-b border-line last:border-0">
+                        <td className="px-4 py-3 font-mono tabular-nums">
+                          {c.patient?.pseudonymRef}
+                        </td>
+                        <td className="px-4 py-3 capitalize">{c.organ}</td>
+                        <td className="px-4 py-3 tabular-nums text-slate">
+                          {new Date(c.createdAt).toLocaleString()}
+                        </td>
+                        <td className="px-4 py-3 text-right">
                           <span
                             className={cn(
-                              "rounded-full px-2 py-0.5 text-xs font-medium",
-                              STATUS_STYLES[c.status],
+                              "font-medium capitalize",
+                              STATUS_COLOR[c.status]?.split(" ")[1] ?? "text-slate",
                             )}
                           >
-                            {c.status.replace("_", " ")}
+                            {label(c.status)}
                           </span>
-                        </td>
-                        <td className="px-4 py-2 text-slate">
-                          {new Date(c.createdAt).toLocaleString()}
                         </td>
                       </tr>
                     ))}
@@ -148,26 +166,27 @@ export default function AdminPage() {
             </div>
 
             {/* ── Audit log ─────────────────────────────────── */}
-            <div className="mt-10 mb-10">
-              <h2 className="text-sm font-semibold text-navy">
-                Audit log (append-only)
-              </h2>
-              <div className="mt-4 max-h-96 space-y-1 overflow-y-auto rounded-md border border-line bg-white p-4 shadow-sm">
-                {audit.map((entry) => (
+            <div className="mt-12 mb-10">
+              <h2 className="text-sm font-medium text-slate">Audit log</h2>
+              <p className="mt-1 text-xs text-slate">Append-only. Nothing here is ever edited or removed.</p>
+              <div className="mt-3 max-h-96 overflow-y-auto rounded-md border border-line bg-card">
+                {audit.length === 0 && (
+                  <p className="px-4 py-10 text-center text-sm text-slate">No entries yet.</p>
+                )}
+                {audit.map((entry, i) => (
                   <div
                     key={entry.id}
-                    className="flex items-center gap-3 py-1 text-xs"
+                    className={cn(
+                      "flex flex-wrap items-baseline gap-x-4 gap-y-1 px-4 py-2.5 text-xs",
+                      i !== 0 && "border-t border-line",
+                    )}
                   >
-                    <span className="w-40 shrink-0 text-slate">
+                    <span className="w-40 shrink-0 tabular-nums text-slate">
                       {new Date(entry.createdAt).toLocaleString()}
                     </span>
-                    <span className="w-44 shrink-0 font-mono text-brand">
-                      {entry.action}
-                    </span>
-                    <span className="w-40 shrink-0 text-slate">
-                      {entry.user
-                        ? `${entry.user.name} (${entry.user.role})`
-                        : "—"}
+                    <span className="w-44 shrink-0 font-mono text-brand">{entry.action}</span>
+                    <span className="w-44 shrink-0 text-slate">
+                      {entry.user ? `${entry.user.name} (${entry.user.role})` : "System"}
                     </span>
                     <span className="text-slate">{entry.detail}</span>
                   </div>
@@ -176,7 +195,7 @@ export default function AdminPage() {
             </div>
           </>
         )}
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }

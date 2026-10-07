@@ -52,23 +52,19 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30" aria-hidden />
 
         <div className="relative flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10">
-            <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
+          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white/10">
+            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
               <path d="M12 3v6m0 6v6M5 12h4m6 0h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
             </svg>
           </span>
-          <span className="text-sm font-semibold">UniCanPredict</span>
+          <span className="text-2xl font-semibold tracking-tight">UniCanPredict</span>
         </div>
 
         <div className="relative max-w-md">
           <h1 className="text-4xl font-semibold leading-tight tracking-tight text-balance">
             Multi-organ histopathology classification.
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-white/75">
-            Breast, lung, and colon tissue patches are read blind by a pathologist first. The model&apos;s
-            prediction is revealed only after that read is locked.
-          </p>
-          <p className="mt-8 font-mono text-xs tabular-nums text-white/60">
+          <p className="mt-6 font-mono text-xs tabular-nums text-white/60">
             Research prototype. Not a medical device. Not for clinical use.
           </p>
         </div>
@@ -78,12 +74,12 @@ export default function LoginPage() {
       <main className="flex items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm">
           <div className="flex items-center gap-3 lg:hidden">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-brand text-white">
-              <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
+            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand text-white">
+              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden>
                 <path d="M12 3v6m0 6v6M5 12h4m6 0h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
             </span>
-            <span className="text-sm font-semibold">UniCanPredict</span>
+            <span className="text-xl font-semibold tracking-tight">UniCanPredict</span>
           </div>
 
           <h2 className="text-2xl font-semibold tracking-tight">Sign in</h2>

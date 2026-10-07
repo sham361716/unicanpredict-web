@@ -53,7 +53,7 @@ export default function VerifyPage() {
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-10">
-      <h1 className="text-2xl font-bold">UniCanPredict — pipeline verification</h1>
+      <h1 className="text-2xl font-bold">UniCanPredict pipeline verification</h1>
       <p className="mt-4 text-sm text-neutral-600">
         Runs all 50 golden vectors through the real ONNX model in-browser
         (onnxruntime-web) and compares against logits computed on the
@@ -79,8 +79,8 @@ export default function VerifyPage() {
         <p className="mt-4 font-semibold">
           {passed} / {results.length} passed (tolerance {tolerance}).{" "}
           {passed === results.length
-            ? "Pipeline verified — safe to build the UI on top of this."
-            : "NOT all passing — do not proceed to UI work."}
+            ? "Pipeline verified. Safe to build the UI on top of this."
+            : "Not all passing. Do not proceed to UI work."}
         </p>
       )}
 

@@ -42,9 +42,7 @@ export default function ClinicianPage() {
       <div className="mx-auto w-full max-w-3xl">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">
-              Clinician — Diagnosis & Release
-            </h1>
+            <h1 className="text-2xl font-bold">Diagnosis and release</h1>
             <p className="mt-1 text-sm text-slate">
               Signed in as {user.name}
             </p>

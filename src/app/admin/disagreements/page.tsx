@@ -72,8 +72,8 @@ export default function DisagreementsPage() {
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Disagreement cases</h1>
             <p className="mt-1 max-w-2xl text-sm text-slate">
-              Cases where a pathologist&apos;s final verdict — given after seeing the AI
-              prediction — still differed from it. Candidates for future retraining
+              Cases where a pathologist&apos;s final verdict, given after seeing the AI
+              prediction, still differed from it. Candidates for future retraining
               review. A disagreement means a case is worth a second look, not that the
               model was wrong.
             </p>

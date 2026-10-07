@@ -14,10 +14,10 @@ export function AppHeader({
 
   return (
     <header className="border-b border-line bg-card">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-4">
+      <div className="mx-auto flex h-18 w-full max-w-6xl items-center justify-between gap-4 px-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-brand text-white">
-            <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden>
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand text-white">
+            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden>
               <path
                 d="M12 3v6m0 6v6M5 12h4m6 0h4"
                 stroke="currentColor"
@@ -26,8 +26,10 @@ export function AppHeader({
               />
             </svg>
           </span>
-          <span className="text-sm font-semibold text-navy">UniCanPredict</span>
-          <span className="hidden text-sm text-slate sm:inline">/ {roleLabel}</span>
+          <span className="text-xl font-semibold tracking-tight text-navy">UniCanPredict</span>
+          <span className="hidden rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-brand sm:inline">
+            {roleLabel}
+          </span>
         </div>
         <div className="flex items-center gap-4">
           <span className="hidden truncate text-sm text-slate sm:inline">

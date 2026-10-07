@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "UniCanPredict",
-  description: "Multi-organ histopathology classification — research prototype",
+  description: "Multi-organ histopathology classification, research prototype",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
