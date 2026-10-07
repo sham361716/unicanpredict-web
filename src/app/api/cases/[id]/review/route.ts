@@ -31,8 +31,14 @@ export async function POST(req: Request, ctx: Ctx) {
   }
   const { blindLabel, finalLabel, notes } = parsed.data;
 
+  // Flag when the pathologist's FINAL verdict — given after seeing the AI's
+  // prediction — still differs from it. A candidate hard example for future
+  // retraining review, not auto-trusted ground truth.
+  const prediction = await prisma.aiPrediction.findUnique({ where: { caseId: existing.id } });
+  const disagreesWithAi = prediction ? prediction.label !== finalLabel : false;
+
   const review = await prisma.review.create({
-    data: { caseId: existing.id, reviewerId: user.sub, blindLabel, finalLabel, notes },
+    data: { caseId: existing.id, reviewerId: user.sub, blindLabel, finalLabel, notes, disagreesWithAi },
   });
 
   const updated = await prisma.case.update({
@@ -44,7 +50,7 @@ export async function POST(req: Request, ctx: Ctx) {
     caseId: existing.id,
     userId: user.sub,
     action: "REVIEW_SUBMITTED",
-    detail: `blind=${blindLabel} final=${finalLabel}`,
+    detail: `blind=${blindLabel} final=${finalLabel}${disagreesWithAi ? " [disagrees with AI]" : ""}`,
   });
   await logAudit({
     caseId: existing.id,

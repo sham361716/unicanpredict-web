@@ -63,6 +63,8 @@ export interface ReviewRecord {
   blindLabel: string;
   finalLabel: string;
   notes?: string | null;
+  disagreesWithAi?: boolean;
+  createdAt?: string;
 }
 
 export interface DiagnosisRecord {
@@ -198,6 +200,18 @@ export async function releaseCase(token: string, caseId: string): Promise<CaseRe
   });
   if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? "Failed to release case");
   return res.json();
+}
+
+// Cases where the pathologist's final verdict disagreed with the AI
+// prediction — candidates for future retraining review.
+export async function listDisagreements(token: string): Promise<CaseRecord[]> {
+  const res = await fetch(`${API_URL}/cases/disagreements`, { headers: authHeaders(token) });
+  if (!res.ok) throw new Error("Failed to load disagreement cases");
+  return res.json();
+}
+
+export function disagreementsExportUrl(): string {
+  return `${API_URL}/cases/disagreements/export`;
 }
 
 export async function submitReview(

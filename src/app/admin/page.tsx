@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -63,15 +64,23 @@ export default function AdminPage() {
               Signed in as {user.name}
             </p>
           </div>
-          <button
-            onClick={() => {
-              clearSession();
-              router.push("/login");
-            }}
-            className="rounded-md border border-line px-3 py-1.5 text-sm text-slate hover:bg-line/60"
-          >
-            Sign out
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin/disagreements"
+              className="rounded-md border border-line px-3 py-1.5 text-sm font-medium text-brand hover:bg-accent-soft/50"
+            >
+              Disagreement cases
+            </Link>
+            <button
+              onClick={() => {
+                clearSession();
+                router.push("/login");
+              }}
+              className="rounded-md border border-line px-3 py-1.5 text-sm text-slate hover:bg-line/60"
+            >
+              Sign out
+            </button>
+          </div>
         </div>
 
         {loading && <p className="mt-8 text-sm text-slate">Loading...</p>}

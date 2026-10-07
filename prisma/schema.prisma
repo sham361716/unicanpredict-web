@@ -85,6 +85,13 @@ model Review {
   notes      String?
   createdAt  DateTime @default(now())
 
+  // True when the pathologist's FINAL verdict (after seeing the AI
+  // prediction) differs from it — i.e. they saw the model's answer and
+  // still overruled it. These are candidate hard examples for future
+  // retraining review, not auto-trusted ground truth: a disagreement
+  // means a human should look at the case, not that the model was wrong.
+  disagreesWithAi Boolean @default(false)
+
   case Case @relation(fields: [caseId], references: [id])
 }
 
