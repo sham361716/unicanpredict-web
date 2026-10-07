@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f7f7;
+  --foreground: #13212b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Clinical lab palette: calm surfaces, one deep teal accent */
+  --color-app: #f4f7f7;
+  --color-card: #ffffff;
+  --color-navy: #13212b;
+  --color-slate: #5b6b75;
+  --color-brand: #0e5c63;
+  --color-brand-hover: #0a4a50;
+  --color-ai: #2a5a8c;
+  --color-accent-soft: #e5f1f1;
+  --color-line: #dbe3e5;
+  --color-success: #17794f;
+  --color-warning: #a35f0a;
+  --color-danger: #b42318;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

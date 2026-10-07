@@ -1,0 +1,1057 @@
+{
+  "tolerance_abs": 0.0001,
+  "model_version": "1.0.0",
+  "note": "expected_logits computed by feeding the RAW, unresized image directly into the ONNX graph (resize + normalize now happen inside the model, opset 18 Resize op with antialias=1) -- do NOT resize/normalize client-side, see preprocess.json.",
+  "vectors": [
+    {
+      "id": "gv_001",
+      "file": "images/gv_001.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.2961344718933105,
+          -1.655645489692688
+        ],
+        "logits_lung": [
+          1.3663047552108765,
+          -1.6170310974121094
+        ],
+        "logits_colon": [
+          -0.33086416125297546,
+          0.347549170255661
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.981142
+    },
+    {
+      "id": "gv_002",
+      "file": "images/gv_002.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.3675525188446045,
+          -1.5102732181549072
+        ],
+        "logits_lung": [
+          1.218664288520813,
+          -1.3247637748718262
+        ],
+        "logits_colon": [
+          -1.1418445110321045,
+          0.9505274891853333
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.979724
+    },
+    {
+      "id": "gv_003",
+      "file": "images/gv_003.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.1008174419403076,
+          -1.3967028856277466
+        ],
+        "logits_lung": [
+          0.644894540309906,
+          -0.5519506931304932
+        ],
+        "logits_colon": [
+          -1.3460623025894165,
+          0.7687426805496216
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.970617
+    },
+    {
+      "id": "gv_004",
+      "file": "images/gv_004.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.1812756061553955,
+          -1.6364108324050903
+        ],
+        "logits_lung": [
+          1.6016120910644531,
+          -1.8965225219726562
+        ],
+        "logits_colon": [
+          0.38602542877197266,
+          0.13097457587718964
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.978494
+    },
+    {
+      "id": "gv_005",
+      "file": "images/gv_005.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.210430383682251,
+          -1.7820696830749512
+        ],
+        "logits_lung": [
+          1.3018062114715576,
+          -1.7048585414886475
+        ],
+        "logits_colon": [
+          1.3791664838790894,
+          -0.4002015292644501
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.981881
+    },
+    {
+      "id": "gv_006",
+      "file": "images/gv_006.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -0.9589253067970276,
+          1.0774720907211304
+        ],
+        "logits_lung": [
+          1.3816226720809937,
+          -1.382213830947876
+        ],
+        "logits_colon": [
+          -0.3454805910587311,
+          1.506953239440918
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.884566
+    },
+    {
+      "id": "gv_007",
+      "file": "images/gv_007.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -0.626084566116333,
+          0.5485106110572815
+        ],
+        "logits_lung": [
+          1.717256784439087,
+          -1.8893969058990479
+        ],
+        "logits_colon": [
+          1.1145591735839844,
+          -0.29975444078445435
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.763975
+    },
+    {
+      "id": "gv_008",
+      "file": "images/gv_008.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.158134937286377,
+          -1.556685209274292
+        ],
+        "logits_lung": [
+          1.0017231702804565,
+          -1.3187944889068604
+        ],
+        "logits_colon": [
+          1.534027338027954,
+          -0.35442253947257996
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.976219
+    },
+    {
+      "id": "gv_009",
+      "file": "images/gv_009.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1217668056488037,
+          0.9058120846748352
+        ],
+        "logits_lung": [
+          1.770507574081421,
+          -1.8100554943084717
+        ],
+        "logits_colon": [
+          1.3519583940505981,
+          -0.4605460464954376
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.883662
+    },
+    {
+      "id": "gv_010",
+      "file": "images/gv_010.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1022452116012573,
+          1.0640672445297241
+        ],
+        "logits_lung": [
+          1.6364516019821167,
+          -1.6477315425872803
+        ],
+        "logits_colon": [
+          0.2009374499320984,
+          0.2221483439207077
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.897183
+    },
+    {
+      "id": "gv_011",
+      "file": "images/gv_011.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1349523067474365,
+          1.0633633136749268
+        ],
+        "logits_lung": [
+          1.3127427101135254,
+          -1.3311736583709717
+        ],
+        "logits_colon": [
+          0.2382449209690094,
+          0.5566595196723938
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.900098
+    },
+    {
+      "id": "gv_012",
+      "file": "images/gv_012.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.1161723136901855,
+          -1.5759260654449463
+        ],
+        "logits_lung": [
+          1.0189237594604492,
+          -1.2394933700561523
+        ],
+        "logits_colon": [
+          -0.24626222252845764,
+          0.12566542625427246
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.975686
+    },
+    {
+      "id": "gv_013",
+      "file": "images/gv_013.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.3095529079437256,
+          0.8573849201202393
+        ],
+        "logits_lung": [
+          -0.768735945224762,
+          1.3644564151763916
+        ],
+        "logits_colon": [
+          -0.3096851408481598,
+          1.5467630624771118
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.897241
+    },
+    {
+      "id": "gv_014",
+      "file": "images/gv_014.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -0.9743054509162903,
+          1.0014102458953857
+        ],
+        "logits_lung": [
+          1.7677686214447021,
+          -1.783836841583252
+        ],
+        "logits_colon": [
+          -0.010023796930909157,
+          0.3454071879386902
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.878224
+    },
+    {
+      "id": "gv_015",
+      "file": "images/gv_015.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          2.1327896118164062,
+          -1.441777229309082
+        ],
+        "logits_lung": [
+          1.6806118488311768,
+          -1.6024889945983887
+        ],
+        "logits_colon": [
+          -1.3150302171707153,
+          0.9970263242721558
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.972737
+    },
+    {
+      "id": "gv_016",
+      "file": "images/gv_016.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2661261558532715,
+          0.9585561156272888
+        ],
+        "logits_lung": [
+          -0.7335981726646423,
+          1.1381566524505615
+        ],
+        "logits_colon": [
+          0.07746117562055588,
+          1.1728960275650024
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.902444
+    },
+    {
+      "id": "gv_017",
+      "file": "images/gv_017.png",
+      "organ": "breast",
+      "expected_logits": {
+        "logits_breast": [
+          -1.0839776992797852,
+          1.0796066522598267
+        ],
+        "logits_lung": [
+          1.196319580078125,
+          -1.2148406505584717
+        ],
+        "logits_colon": [
+          -0.027344904839992523,
+          0.8554502129554749
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.896931
+    },
+    {
+      "id": "gv_018",
+      "file": "images/gv_018.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.096706509590149,
+          0.8768069744110107
+        ],
+        "logits_lung": [
+          1.7116212844848633,
+          -1.8915226459503174
+        ],
+        "logits_colon": [
+          1.8498680591583252,
+          -0.779910683631897
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.973484
+    },
+    {
+      "id": "gv_019",
+      "file": "images/gv_019.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1101915836334229,
+          0.991908848285675
+        ],
+        "logits_lung": [
+          1.717056155204773,
+          -1.8010976314544678
+        ],
+        "logits_colon": [
+          1.482158899307251,
+          -0.6254964470863342
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.9712
+    },
+    {
+      "id": "gv_020",
+      "file": "images/gv_020.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.18864107131958,
+          0.9128024578094482
+        ],
+        "logits_lung": [
+          1.7132668495178223,
+          -1.7976479530334473
+        ],
+        "logits_colon": [
+          0.9999982714653015,
+          -0.3771354854106903
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.970997
+    },
+    {
+      "id": "gv_021",
+      "file": "images/gv_021.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.057585597038269,
+          0.8078072667121887
+        ],
+        "logits_lung": [
+          1.6970386505126953,
+          -1.8075175285339355
+        ],
+        "logits_colon": [
+          0.6811023354530334,
+          -0.1796383112668991
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.970817
+    },
+    {
+      "id": "gv_022",
+      "file": "images/gv_022.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.0321699380874634,
+          0.8064150810241699
+        ],
+        "logits_lung": [
+          1.6671663522720337,
+          -1.7841997146606445
+        ],
+        "logits_colon": [
+          1.026793360710144,
+          -0.39143192768096924
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.969272
+    },
+    {
+      "id": "gv_023",
+      "file": "images/gv_023.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.0245537757873535,
+          0.8233004212379456
+        ],
+        "logits_lung": [
+          1.7004806995391846,
+          -1.8222441673278809
+        ],
+        "logits_colon": [
+          0.8439386487007141,
+          -0.29935914278030396
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.971327
+    },
+    {
+      "id": "gv_024",
+      "file": "images/gv_024.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -0.9913657307624817,
+          0.7943770885467529
+        ],
+        "logits_lung": [
+          1.6824296712875366,
+          -1.803588628768921
+        ],
+        "logits_colon": [
+          0.5933927297592163,
+          -0.12709878385066986
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.970287
+    },
+    {
+      "id": "gv_025",
+      "file": "images/gv_025.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.023095726966858,
+          0.8434154391288757
+        ],
+        "logits_lung": [
+          1.7101356983184814,
+          -1.8090095520019531
+        ],
+        "logits_colon": [
+          0.569618821144104,
+          -0.09326410293579102
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.971228
+    },
+    {
+      "id": "gv_026",
+      "file": "images/gv_026.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.3892549276351929,
+          0.3809640407562256
+        ],
+        "logits_lung": [
+          -0.7535355687141418,
+          1.5772206783294678
+        ],
+        "logits_colon": [
+          -0.4679860770702362,
+          1.270899772644043
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.911392
+    },
+    {
+      "id": "gv_027",
+      "file": "images/gv_027.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.504093885421753,
+          0.36051732301712036
+        ],
+        "logits_lung": [
+          -0.7547586560249329,
+          1.573000431060791
+        ],
+        "logits_colon": [
+          -0.8796292543411255,
+          1.3249554634094238
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.91115
+    },
+    {
+      "id": "gv_028",
+      "file": "images/gv_028.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.393930196762085,
+          0.31151875853538513
+        ],
+        "logits_lung": [
+          -0.7697120904922485,
+          1.5642449855804443
+        ],
+        "logits_colon": [
+          -0.8749318718910217,
+          1.157469391822815
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.911651
+    },
+    {
+      "id": "gv_029",
+      "file": "images/gv_029.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.188517451286316,
+          0.28571048378944397
+        ],
+        "logits_lung": [
+          -0.761160671710968,
+          1.5482192039489746
+        ],
+        "logits_colon": [
+          -0.5689888000488281,
+          0.9616830348968506
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.909651
+    },
+    {
+      "id": "gv_030",
+      "file": "images/gv_030.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2929422855377197,
+          0.22804011404514313
+        ],
+        "logits_lung": [
+          -0.7555415630340576,
+          1.5833897590637207
+        ],
+        "logits_colon": [
+          -0.8658495545387268,
+          1.0926165580749512
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.91205
+    },
+    {
+      "id": "gv_031",
+      "file": "images/gv_031.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.6276240348815918,
+          0.540867030620575
+        ],
+        "logits_lung": [
+          -0.861245334148407,
+          1.5425152778625488
+        ],
+        "logits_colon": [
+          -0.5125851035118103,
+          1.3320292234420776
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.917114
+    },
+    {
+      "id": "gv_032",
+      "file": "images/gv_032.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.4603577852249146,
+          0.34676069021224976
+        ],
+        "logits_lung": [
+          -0.7612548470497131,
+          1.5739226341247559
+        ],
+        "logits_colon": [
+          -0.8639782071113586,
+          1.229530930519104
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.911749
+    },
+    {
+      "id": "gv_033",
+      "file": "images/gv_033.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.599177360534668,
+          0.45096850395202637
+        ],
+        "logits_lung": [
+          -0.8015541434288025,
+          1.549952745437622
+        ],
+        "logits_colon": [
+          -0.6488093733787537,
+          1.2779759168624878
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.913054
+    },
+    {
+      "id": "gv_034",
+      "file": "images/gv_034.png",
+      "organ": "lung",
+      "expected_logits": {
+        "logits_breast": [
+          -1.0665675401687622,
+          0.9403382539749146
+        ],
+        "logits_lung": [
+          1.7271132469177246,
+          -1.793184518814087
+        ],
+        "logits_colon": [
+          0.3598492741584778,
+          0.08601526916027069
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.97126
+    },
+    {
+      "id": "gv_035",
+      "file": "images/gv_035.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.222280502319336,
+          0.8866209983825684
+        ],
+        "logits_lung": [
+          1.7058511972427368,
+          -1.7178287506103516
+        ],
+        "logits_colon": [
+          2.211911201477051,
+          -0.908484160900116
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.957726
+    },
+    {
+      "id": "gv_036",
+      "file": "images/gv_036.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2377278804779053,
+          0.8224261999130249
+        ],
+        "logits_lung": [
+          1.7117162942886353,
+          -1.698498010635376
+        ],
+        "logits_colon": [
+          2.5599749088287354,
+          -0.8933302760124207
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.96933
+    },
+    {
+      "id": "gv_037",
+      "file": "images/gv_037.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1151083707809448,
+          0.9844892024993896
+        ],
+        "logits_lung": [
+          1.6961479187011719,
+          -1.767030954360962
+        ],
+        "logits_colon": [
+          1.6970908641815186,
+          -0.6937407851219177
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.916125
+    },
+    {
+      "id": "gv_038",
+      "file": "images/gv_038.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1697473526000977,
+          0.8895968198776245
+        ],
+        "logits_lung": [
+          1.6465502977371216,
+          -1.6753442287445068
+        ],
+        "logits_colon": [
+          -0.08236239105463028,
+          0.6791160702705383
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.681675
+    },
+    {
+      "id": "gv_039",
+      "file": "images/gv_039.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2460157871246338,
+          0.9511018991470337
+        ],
+        "logits_lung": [
+          1.729170560836792,
+          -1.7085347175598145
+        ],
+        "logits_colon": [
+          1.3531166315078735,
+          -0.5682532787322998
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.872291
+    },
+    {
+      "id": "gv_040",
+      "file": "images/gv_040.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2023130655288696,
+          0.7571462392807007
+        ],
+        "logits_lung": [
+          1.6969245672225952,
+          -1.6545822620391846
+        ],
+        "logits_colon": [
+          2.6891584396362305,
+          -0.8780128955841064
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.97254
+    },
+    {
+      "id": "gv_041",
+      "file": "images/gv_041.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2861467599868774,
+          0.9309805035591125
+        ],
+        "logits_lung": [
+          1.6743072271347046,
+          -1.755781888961792
+        ],
+        "logits_colon": [
+          2.333711624145508,
+          -0.90077143907547
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.962112
+    },
+    {
+      "id": "gv_042",
+      "file": "images/gv_042.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.241288185119629,
+          0.7790166139602661
+        ],
+        "logits_lung": [
+          1.673919439315796,
+          -1.72343111038208
+        ],
+        "logits_colon": [
+          2.6953728199005127,
+          -0.9475811719894409
+        ]
+      },
+      "expected_label": "BENIGN",
+      "expected_probability": 0.974493
+    },
+    {
+      "id": "gv_043",
+      "file": "images/gv_043.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.3269509077072144,
+          0.6432788968086243
+        ],
+        "logits_lung": [
+          0.7475032806396484,
+          -1.0351097583770752
+        ],
+        "logits_colon": [
+          -0.1171296089887619,
+          2.4382426738739014
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.927934
+    },
+    {
+      "id": "gv_044",
+      "file": "images/gv_044.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.135507345199585,
+          0.9805185794830322
+        ],
+        "logits_lung": [
+          1.5451956987380981,
+          -1.5109148025512695
+        ],
+        "logits_colon": [
+          -0.2954972982406616,
+          1.6260344982147217
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.872309
+    },
+    {
+      "id": "gv_045",
+      "file": "images/gv_045.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.189129114151001,
+          0.8212122321128845
+        ],
+        "logits_lung": [
+          1.0406808853149414,
+          -1.217210054397583
+        ],
+        "logits_colon": [
+          -0.2607874870300293,
+          2.0951225757598877
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.913403
+    },
+    {
+      "id": "gv_046",
+      "file": "images/gv_046.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2399998903274536,
+          0.8626779913902283
+        ],
+        "logits_lung": [
+          1.163669466972351,
+          -1.2984681129455566
+        ],
+        "logits_colon": [
+          -0.2190006673336029,
+          2.2251815795898438
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.920135
+    },
+    {
+      "id": "gv_047",
+      "file": "images/gv_047.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.3370003700256348,
+          0.5635479688644409
+        ],
+        "logits_lung": [
+          0.7933622002601624,
+          -0.9209374785423279
+        ],
+        "logits_colon": [
+          -0.13532531261444092,
+          2.430701971054077
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.928643
+    },
+    {
+      "id": "gv_048",
+      "file": "images/gv_048.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.337361216545105,
+          0.7669909000396729
+        ],
+        "logits_lung": [
+          0.5336551666259766,
+          -0.623155415058136
+        ],
+        "logits_colon": [
+          -0.23038318753242493,
+          2.275810956954956
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.924575
+    },
+    {
+      "id": "gv_049",
+      "file": "images/gv_049.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.2574458122253418,
+          0.8255879878997803
+        ],
+        "logits_lung": [
+          1.2376996278762817,
+          -1.332524061203003
+        ],
+        "logits_colon": [
+          -0.2372981607913971,
+          2.218536138534546
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.920987
+    },
+    {
+      "id": "gv_050",
+      "file": "images/gv_050.png",
+      "organ": "colon",
+      "expected_logits": {
+        "logits_breast": [
+          -1.1634106636047363,
+          0.7808193564414978
+        ],
+        "logits_lung": [
+          1.3991689682006836,
+          -1.5595641136169434
+        ],
+        "logits_colon": [
+          -0.27382194995880127,
+          1.9329252243041992
+        ]
+      },
+      "expected_label": "MALIGNANT",
+      "expected_probability": 0.900854
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "model_version": "1.0.0",
+  "model_file": "unicanpredict_v1.0.0.onnx",
+  "input_name": "image",
+  "input_layout": "NCHW",
+  "input_shape": [1, 3, "height", "width"],
+  "input_shape_note": "Height and width are DYNAMIC -- pass the image at its native resolution, do NOT resize it yourself. Resize (224x224, bilinear, antialias) and channel normalization happen INSIDE the ONNX graph (opset 18 Resize op with antialias=1), not in JS.",
+  "why_resize_is_in_the_graph": "Measured empirically (headless Chromium + Playwright against the golden vectors below) that browser canvas resize -- both plain drawImage and createImageBitmap(resizeQuality:'high') -- could NOT reproduce the training pipeline's PIL/torchvision antialiased bilinear resize closely enough: max abs logit diff up to 0.34 on organs needing real downsampling (breast/lung), vs. colon (source already 224x224, no resize needed) which matched to ~1e-6. Baking the resize into the ONNX graph means the identical ONNX Runtime Resize op runs on both the training machine and in the browser -- one implementation, not two being reconciled after the fact.",
+  "client_side_steps": [
+    "Decode the uploaded image (any resolution, JPEG/PNG).",
+    "Convert to RGB, drop any alpha channel.",
+    "Scale pixel values from 0-255 to 0-1 (float32).",
+    "Rearrange from HWC to NCHW -- shape [1, 3, H, W].",
+    "Do NOT resize. Do NOT normalize (subtract mean / divide std) -- the graph does both."
+  ],
+  "size_safety_cap": {
+    "max_longest_side_px": 2000,
+    "note": "Purely a memory/perf safety valve for unusually large uploads (e.g. a phone photo), not a precision requirement -- none of the training datasets or golden vector images exceed ~800px. If you must pre-downscale an oversized upload before feeding the graph, do it to well above 2000px->224px isn't needed; downscaling only large outliers to ~2000px on the long side keeps the graph's own antialiased resize doing the precision-critical work."
+  },
+  "color_mode": "RGB",
+  "rescale": 0.00392156862745098,
+  "rescale_note": "divide raw 0-255 pixel values by 255 to get 0-1 range -- this is the ONLY numeric transform the client applies",
+  "mean": [0.7158, 0.5300, 0.7423],
+  "std": [0.1627, 0.2054, 0.1548],
+  "mean_std_note": "Informational only -- already baked into the ONNX graph, applied after the internal resize. Not ImageNet stats; computed from this project's own training split. You do not need to apply these yourself.",
+  "outputs": {
+    "logits_breast": { "organ": "breast", "classes": ["BENIGN", "MALIGNANT"] },
+    "logits_lung":   { "organ": "lung",   "classes": ["BENIGN", "MALIGNANT"] },
+    "logits_colon":  { "organ": "colon",  "classes": ["BENIGN", "MALIGNANT"] }
+  },
+  "output_note": "Model always returns all 3 output tensors regardless of selected organ. Use the case's declared organ to pick which tensor to read; ignore the other two. Apply softmax over each tensor's 2 values to get probabilities; argmax picks the class.",
+  "postprocess": "probability = softmax(logits)[predicted_index]; predicted_label = classes[predicted_index]"
+}
