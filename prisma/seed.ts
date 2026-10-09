@@ -6,10 +6,10 @@ import bcrypt from "bcryptjs";
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD;
 
 const USERS = [
-  { email: "technician@unicanpredict.local", name: "Tina Technician", role: "TECHNICIAN" as const },
-  { email: "pathologist@unicanpredict.local", name: "Pat Pathologist", role: "PATHOLOGIST" as const },
-  { email: "clinician@unicanpredict.local", name: "Chris Clinician", role: "CLINICIAN" as const },
-  { email: "admin@unicanpredict.local", name: "Alex Admin", role: "ADMIN" as const },
+  { email: "technician@unicanpredict.local", name: "Tina", role: "TECHNICIAN" as const },
+  { email: "pathologist@unicanpredict.local", name: "Pat", role: "PATHOLOGIST" as const },
+  { email: "clinician@unicanpredict.local", name: "Chris", role: "CLINICIAN" as const },
+  { email: "admin@unicanpredict.local", name: "Alex", role: "ADMIN" as const },
 ];
 
 const prisma = new PrismaClient();
