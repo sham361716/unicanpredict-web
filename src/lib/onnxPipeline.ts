@@ -1,6 +1,20 @@
-import * as ort from "onnxruntime-web";
+// CPU-only (WebAssembly) build: the app never uses WebGPU, and this build's
+// runtime is half the size of the default bundle with identical outputs.
+// It is imported lazily because the module touches browser-only APIs when it
+// loads, which would break Next.js rendering pages ahead of time on the server.
+import type * as Ort from "onnxruntime-web/wasm";
 
-ort.env.wasm.wasmPaths = "/ort/";
+let ortPromise: Promise<typeof Ort> | null = null;
+
+function loadOrt(): Promise<typeof Ort> {
+  if (!ortPromise) {
+    ortPromise = import("onnxruntime-web/wasm").then((ort) => {
+      ort.env.wasm.wasmPaths = "/ort/";
+      return ort;
+    });
+  }
+  return ortPromise;
+}
 
 export interface PreprocessConfig {
   size_safety_cap: { max_longest_side_px: number };
@@ -31,7 +45,7 @@ const GOLDEN_VECTORS_URL = "/model/golden_vectors.json";
 // entry.file already includes its own "images/" prefix (e.g. "images/gv_001.png").
 const GOLDEN_VECTOR_IMAGE_DIR = "/model/golden_vectors";
 
-let sessionPromise: Promise<ort.InferenceSession> | null = null;
+let sessionPromise: Promise<Ort.InferenceSession> | null = null;
 let preprocessPromise: Promise<PreprocessConfig> | null = null;
 
 export function loadPreprocessConfig(): Promise<PreprocessConfig> {
@@ -44,9 +58,10 @@ export function loadPreprocessConfig(): Promise<PreprocessConfig> {
   return preprocessPromise;
 }
 
-export function loadSession(): Promise<ort.InferenceSession> {
+export function loadSession(): Promise<Ort.InferenceSession> {
   if (!sessionPromise) {
     sessionPromise = (async () => {
+      const ort = await loadOrt();
       const session = await ort.InferenceSession.create(MODEL_URL, {
         executionProviders: ["wasm"],
       });
@@ -82,7 +97,8 @@ export function loadImageEl(url: string): Promise<HTMLImageElement> {
 export async function preprocessImage(
   imgEl: HTMLImageElement,
   cfg: PreprocessConfig
-): Promise<ort.Tensor> {
+): Promise<Ort.Tensor> {
+  const ort = await loadOrt();
   let width = imgEl.naturalWidth || imgEl.width;
   let height = imgEl.naturalHeight || imgEl.height;
   const cap = cfg.size_safety_cap.max_longest_side_px;
@@ -178,7 +194,7 @@ export async function loadGoldenVectors(): Promise<GoldenVectorsFile> {
 
 export async function runGoldenVectorCheck(
   entry: GoldenVectorEntry,
-  session: ort.InferenceSession,
+  session: Ort.InferenceSession,
   cfg: PreprocessConfig,
   toleranceAbs: number
 ): Promise<GoldenVectorResult> {
