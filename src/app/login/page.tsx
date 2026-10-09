@@ -56,7 +56,7 @@ export default function LoginPage() {
               <path d="M12 3v6m0 6v6M5 12h4m6 0h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
             </svg>
           </span>
-          <span className="text-2xl font-semibold tracking-tight">UniCanPredict</span>
+          <span className="text-3xl font-semibold tracking-tight">UniCanPredict</span>
         </div>
 
         <div className="relative max-w-md">
@@ -78,7 +78,7 @@ export default function LoginPage() {
                 <path d="M12 3v6m0 6v6M5 12h4m6 0h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
             </span>
-            <span className="text-xl font-semibold tracking-tight">UniCanPredict</span>
+            <span className="text-2xl font-semibold tracking-tight">UniCanPredict</span>
           </div>
 
           <h2 className="text-2xl font-semibold tracking-tight">Sign in</h2>
