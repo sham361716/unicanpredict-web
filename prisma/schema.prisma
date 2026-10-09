@@ -30,9 +30,9 @@ model Patient {
   cases Case[]
 }
 
-// Status transitions: DRAFT -> AWAITING_REVIEW -> (REJECTED_QC | UNDER_REVIEW)
-// -> VERIFIED -> DIAGNOSED -> RELEASED. RELEASED is immutable; every
-// transition is written to AuditLog by the API layer, never skipped.
+// Status transitions: DRAFT -> AWAITING_REVIEW -> UNDER_REVIEW -> VERIFIED
+// -> DIAGNOSED -> RELEASED. RELEASED is immutable; every transition is
+// written to AuditLog by the API layer, never skipped.
 model Case {
   id           String   @id @default(uuid())
   status       String   @default("DRAFT")

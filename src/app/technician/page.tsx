@@ -22,7 +22,6 @@ const ORGANS = ["breast", "lung", "colon"] as const;
 const STATUS_STYLES: Record<string, string> = {
   DRAFT: "text-slate",
   AWAITING_REVIEW: "text-warning",
-  REJECTED_QC: "text-danger",
   UNDER_REVIEW: "text-ai",
   VERIFIED: "text-brand",
   DIAGNOSED: "text-brand",

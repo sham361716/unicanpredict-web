@@ -19,7 +19,6 @@ import {
 const STATUS_COLOR: Record<string, string> = {
   DRAFT: "bg-line text-slate",
   AWAITING_REVIEW: "bg-warning text-warning",
-  REJECTED_QC: "bg-danger text-danger",
   UNDER_REVIEW: "bg-ai text-ai",
   VERIFIED: "bg-brand text-brand",
   DIAGNOSED: "bg-brand text-brand",

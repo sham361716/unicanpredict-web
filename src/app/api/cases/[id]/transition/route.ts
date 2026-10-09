@@ -8,12 +8,11 @@ type Ctx = { params: Promise<{ id: string }> };
 
 const transitionSchema = z.object({ to: z.string() });
 
-// Technician-owned transitions only from DRAFT/REJECTED_QC; everything past
-// AWAITING_REVIEW belongs to pathologist/clinician roles.
+// Technician-owned transition out of DRAFT; everything past AWAITING_REVIEW
+// belongs to pathologist/clinician roles.
 const ROLE_FOR_TRANSITION: Record<string, string> = {
   AWAITING_REVIEW: "TECHNICIAN",
   UNDER_REVIEW: "PATHOLOGIST",
-  REJECTED_QC: "PATHOLOGIST",
   VERIFIED: "PATHOLOGIST",
   DIAGNOSED: "CLINICIAN",
   RELEASED: "CLINICIAN",
