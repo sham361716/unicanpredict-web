@@ -5,7 +5,7 @@ export interface AuthUser {
   id: string;
   email: string;
   name: string;
-  role: "TECHNICIAN" | "PATHOLOGIST" | "CLINICIAN" | "PATIENT" | "ADMIN";
+  role: "TECHNICIAN" | "PATHOLOGIST" | "CLINICIAN" | "ADMIN";
 }
 
 export interface LoginResponse {

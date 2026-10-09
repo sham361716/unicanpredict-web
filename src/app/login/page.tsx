@@ -11,11 +11,10 @@ const ROLE_HOME: Record<string, string> = {
   TECHNICIAN: "/technician",
   PATHOLOGIST: "/pathologist",
   CLINICIAN: "/clinician",
-  PATIENT: "/patient",
   ADMIN: "/admin",
 };
 
-const ROLES = ["Technician", "Pathologist", "Clinician", "Patient", "Admin"];
+const ROLES = ["Technician", "Pathologist", "Clinician", "Admin"];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,7 +48,7 @@ export default function LoginPage() {
           style={{ backgroundImage: "url(/UniCanPredict.jpg)" }}
           aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30" aria-hidden />
+        <div className="absolute inset-0 bg-linear-to-t from-navy via-navy/70 to-navy/30" aria-hidden />
 
         <div className="relative flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white/10">

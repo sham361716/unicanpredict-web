@@ -9,7 +9,6 @@ const USERS = [
   { email: "technician@unicanpredict.local", name: "Tina Technician", role: "TECHNICIAN" as const },
   { email: "pathologist@unicanpredict.local", name: "Pat Pathologist", role: "PATHOLOGIST" as const },
   { email: "clinician@unicanpredict.local", name: "Chris Clinician", role: "CLINICIAN" as const },
-  { email: "patient@unicanpredict.local", name: "Pam Patient", role: "PATIENT" as const },
   { email: "admin@unicanpredict.local", name: "Alex Admin", role: "ADMIN" as const },
 ];
 

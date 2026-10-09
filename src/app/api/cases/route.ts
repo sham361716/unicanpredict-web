@@ -47,17 +47,16 @@ export async function GET(req: Request) {
   const user = authenticate(req);
   if (!user) return unauthorized();
 
-  const role = user.role;
-  const where =
-    role === "TECHNICIAN"
-      ? { uploadedById: user.sub }
-      : role === "PATHOLOGIST"
-        ? { status: { in: ["AWAITING_REVIEW", "UNDER_REVIEW"] } }
-        : role === "CLINICIAN"
-          ? { status: { in: ["VERIFIED", "DIAGNOSED"] } }
-          : role === "ADMIN"
-            ? {}
-            : { status: "RELEASED" }; // PATIENT
+  // Each role sees only the slice of the pipeline relevant to its job.
+  // An unrecognized role sees nothing, rather than falling through to a
+  // broader default.
+  const SCOPE_BY_ROLE: Record<string, object> = {
+    TECHNICIAN: { uploadedById: user.sub },
+    PATHOLOGIST: { status: { in: ["AWAITING_REVIEW", "UNDER_REVIEW"] } },
+    CLINICIAN: { status: { in: ["VERIFIED", "DIAGNOSED"] } },
+    ADMIN: {},
+  };
+  const where = SCOPE_BY_ROLE[user.role] ?? { id: "" };
 
   const cases = await prisma.case.findMany({
     where,
