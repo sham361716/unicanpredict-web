@@ -22,7 +22,7 @@ export interface GoldenVectorsFile {
   vectors: GoldenVectorEntry[];
 }
 
-// Pinned literal, never looked up dynamically — see README.txt.
+// Pinned literal, never looked up dynamically. See README.txt.
 export const MODEL_VERSION = "1.0.0";
 
 const MODEL_URL = "/model/unicanpredict_v1.0.0.onnx";
@@ -50,7 +50,7 @@ export function loadSession(): Promise<ort.InferenceSession> {
       const session = await ort.InferenceSession.create(MODEL_URL, {
         executionProviders: ["wasm"],
       });
-      // Warm-up runs — first call is always slow, don't let it pollute later timing.
+      // Warm-up runs. The first call is always slow; don't let it pollute later timing.
       const dummy = new ort.Tensor(
         "float32",
         new Float32Array(1 * 3 * 224 * 224),
@@ -135,7 +135,7 @@ export interface PredictionResult {
 
 // Runs the full pipeline (preprocess -> ONNX -> softmax) for one image against
 // one organ head. This is the only place a live (non-golden-vector) image
-// gets predicted client-side — the browser is the only place inference runs.
+// gets predicted client-side; the browser is the only place inference runs.
 export async function predictImage(
   imgUrl: string,
   organ: "breast" | "lung" | "colon"

@@ -60,7 +60,7 @@ export default function TechnicianPage() {
       const data = await listCases(currentToken);
       setCases(data);
     } catch {
-      // non-fatal — the list just stays stale
+      // non-fatal, the list just stays stale
     } finally {
       setLoadingCases(false);
     }

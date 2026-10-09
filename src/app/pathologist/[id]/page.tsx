@@ -23,7 +23,7 @@ import {
 type Label = "BENIGN" | "MALIGNANT";
 
 // Step machine for the mandatory blind-read-then-reveal flow: the AI
-// prediction is not fetched — let alone rendered — until the pathologist's
+// prediction is not fetched, let alone rendered, until the pathologist's
 // own blind read is locked in. "locking" happens before inference ever runs.
 type Step = "loading" | "blind" | "predicting" | "revealed" | "done";
 

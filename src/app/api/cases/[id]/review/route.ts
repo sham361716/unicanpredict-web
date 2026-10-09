@@ -31,8 +31,8 @@ export async function POST(req: Request, ctx: Ctx) {
   }
   const { blindLabel, finalLabel, notes } = parsed.data;
 
-  // Flag when the pathologist's FINAL verdict — given after seeing the AI's
-  // prediction — still differs from it. A candidate hard example for future
+  // Flag when the pathologist's FINAL verdict, given after seeing the AI's
+  // prediction, still differs from it. A candidate hard example for future
   // retraining review, not auto-trusted ground truth.
   const prediction = await prisma.aiPrediction.findUnique({ where: { caseId: existing.id } });
   const disagreesWithAi = prediction ? prediction.label !== finalLabel : false;

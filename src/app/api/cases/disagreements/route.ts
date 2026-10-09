@@ -3,7 +3,7 @@ import { authenticate, forbidden, json, unauthorized } from "@/lib/server/auth";
 import { imageMeta } from "@/lib/server/images";
 
 // Cases where the pathologist's final verdict disagreed with the AI
-// prediction — candidates for future retraining review, for curation by
+// prediction, candidates for future retraining review, for curation by
 // an admin, not auto-trusted labels.
 export async function GET(req: Request) {
   const user = authenticate(req);

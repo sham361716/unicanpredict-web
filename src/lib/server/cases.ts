@@ -13,7 +13,7 @@ export const CASE_STATUSES = [
 export type CaseStatus = (typeof CASE_STATUSES)[number];
 
 // Allowed status -> status transitions. Anything not listed here is rejected
-// by the API. RELEASED has no outgoing edges — it's immutable.
+// by the API. RELEASED has no outgoing edges; it's immutable.
 export const ALLOWED_TRANSITIONS: Record<CaseStatus, CaseStatus[]> = {
   DRAFT: ["AWAITING_REVIEW"],
   AWAITING_REVIEW: ["REJECTED_QC", "UNDER_REVIEW"],

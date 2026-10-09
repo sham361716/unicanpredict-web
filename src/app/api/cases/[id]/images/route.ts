@@ -31,7 +31,7 @@ export async function POST(req: Request, ctx: Ctx) {
     return json({ error: "Image is larger than 4 MB" }, 413);
   }
 
-  // UUID name only — never the original filename, per the
+  // UUID name only, never the original filename, per the
   // "no original filenames/EXIF" compliance requirement.
   const ext = path.extname(file.name).toLowerCase();
   const storedName = `${uuidv4()}${ext}`;
