@@ -168,7 +168,6 @@ export default function AdminPage() {
             {/* ── Audit log ─────────────────────────────────── */}
             <div className="mt-12 mb-10">
               <h2 className="text-sm font-medium text-slate">Audit log</h2>
-              <p className="mt-1 text-xs text-slate">Append-only. Nothing here is ever edited or removed.</p>
               <div className="mt-3 max-h-96 overflow-y-auto rounded-md border border-line bg-card">
                 {audit.length === 0 && (
                   <p className="px-4 py-10 text-center text-sm text-slate">No entries yet.</p>

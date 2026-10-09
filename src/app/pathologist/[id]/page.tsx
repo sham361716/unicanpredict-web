@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { AppHeader } from "@/components/app-header";
@@ -44,6 +44,12 @@ export default function PathologistCasePage() {
   const [notes, setNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  // Guards the case load (and the status transition it can trigger) against
+  // running twice for the same case id. A second run on a fresh navigation,
+  // or React re-invoking the effect, previously raced two transition
+  // requests and could leave the page stuck without ever showing an error.
+  const loadedCaseId = useRef<string | null>(null);
+
   useEffect(() => {
     const session = getSession();
     if (!session || session.user.role !== "PATHOLOGIST") {
@@ -52,6 +58,11 @@ export default function PathologistCasePage() {
     }
     setUser(session.user);
     setToken(session.token);
+
+    if (loadedCaseId.current === params.id) return;
+    loadedCaseId.current = params.id;
+    setStep("loading");
+    setError(null);
 
     (async () => {
       try {

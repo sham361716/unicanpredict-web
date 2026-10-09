@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AppHeader } from "@/components/app-header";
 import {
@@ -68,7 +69,11 @@ export default function DisagreementsPage() {
       <AppHeader roleLabel="Admin" userName={user.name} />
 
       <main className="mx-auto w-full max-w-6xl px-4 py-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <Link href="/admin" className="text-sm font-medium text-slate hover:text-navy">
+          ← Dashboard
+        </Link>
+
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Disagreement cases</h1>
             <p className="mt-1 max-w-2xl text-sm text-slate">

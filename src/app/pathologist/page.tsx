@@ -38,8 +38,6 @@ export default function PathologistPage() {
 
   if (!user) return null;
 
-  const pending = cases.filter((c) => c.status === "AWAITING_REVIEW").length;
-
   return (
     <div className="flex min-h-full flex-1 flex-col bg-app text-navy">
       <AppHeader roleLabel="Pathologist" userName={user.name} />
@@ -48,11 +46,6 @@ export default function PathologistPage() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Worklist</h1>
-            <p className="mt-1 text-sm text-slate">
-              {loading
-                ? "Loading cases"
-                : `${pending} awaiting your blind read`}
-            </p>
           </div>
         </div>
 
